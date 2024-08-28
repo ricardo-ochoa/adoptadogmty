@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Adoptadog",
+  title: "AdoptAdog  Monterrey",
   description: "Centro de Adopciones Creemos en un mundo mejor con respeto y amor a los animales",
 };
 

@@ -3,8 +3,7 @@ import Link from 'next/link'
 
 export default function Links() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-[#84DDE2] flex flex-col items-center justify-center">
-
+        <div className="min-h-screen flex flex-col items-center justify-center">
             <div className="text-center mb-8">
                 <Image
                     src="/profilepic.jpg"
@@ -18,7 +17,6 @@ export default function Links() {
                     Centro de Adopciones Creemos en un mundo mejor con respeto y amor a los animales
                 </p>
             </div>
-
 
             <div className="flex gap-8 mb-8">
                 <Link href="https://www.instagram.com/adoptadogmty/" className="hover:underline transform transition duration-300 hover:scale-110"
@@ -47,13 +45,19 @@ export default function Links() {
                 </Link>
             </div>
 
-            <div className="w-full max-w-md space-y-4">
+            <div className="w-full max-w-md space-y-3 mb-10 px-3">
                 <Link href="https://docs.google.com/forms/d/e/1FAIpQLScrPt4pwYgOByXzmKwuBN3ZhPJ1WN4tjCH4pHlSaZtlo7JnHA/viewform" className="block"
                     target="_blank"
                     rel="noopener noreferrer">
-                    <button className="w-full bg-white text-purple-700 rounded-full py-3 px-4 flex items-center justify-between hover:bg-gray-100 transform transition duration-300 hover:scale-105">
+                    <button className="
+                    w-full px-3 bg-white text-purple-700 
+                    border-white border-2
+                    rounded-full py-3 flex items-center justify-between
+                    hover:border-purple-700 hover:border-2
+                     transform transition 
+                    duration-300 hover:scale-105">
                         <div className="flex items-center">
-                            <Image src="/placeholder.svg" alt="" width={24} height={24} className="mr-3 rounded" />
+                            <Image src="/links/adopcion.png" alt="" width={50} height={50} className="mr-3 rounded" />
                             <span>Adopción Responsable</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -66,9 +70,15 @@ export default function Links() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <button className="w-full bg-white text-purple-700 rounded-full py-3 px-4 flex items-center justify-between hover:bg-gray-100 transform transition duration-300 hover:scale-105">
+                    <button className="
+                    w-full px-3 bg-white text-purple-700 
+                    border-white border-2
+                    rounded-full py-3 flex items-center justify-between
+                    hover:border-purple-700 hover:border-2
+                     transform transition 
+                    duration-300 hover:scale-105">
                         <div className="flex items-center">
-                            <Image src="/placeholder.svg" alt="" width={24} height={24} className="mr-3 rounded" />
+                            <Image src="/links/paypal.svg" alt="Donaciones paypal" width={50} height={50} className="mr-3 rounded" />
                             <span>Donaciones con Paypal</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -81,9 +91,15 @@ export default function Links() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <button className="w-full bg-white text-purple-700 rounded-full py-3 px-4 flex items-center justify-between hover:bg-gray-100 transform transition duration-300 hover:scale-105">
+                    <button className="
+                    w-full px-3 bg-white text-purple-700 
+                    border-white border-2
+                    rounded-full py-3 flex items-center justify-between
+                    hover:border-purple-700 hover:border-2
+                     transform transition 
+                    duration-300 hover:scale-105">
                         <div className="flex items-center">
-                            <Image src="/placeholder.svg" alt="" width={24} height={24} className="mr-3 rounded" />
+                            <Image src="/links/especie.webp" alt="" width={50} height={50} className="mr-3 rounded" />
                             <span>Donaciones en especie</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -95,9 +111,15 @@ export default function Links() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <button className="w-full bg-white text-purple-700 rounded-full py-3 px-4 flex items-center justify-between hover:bg-gray-100 transform transition duration-300 hover:scale-105">
+                    <button className="
+                    w-full px-3 bg-white text-purple-700 
+                    border-white border-2
+                    rounded-full py-3 flex items-center justify-between
+                    hover:border-purple-700 hover:border-2
+                     transform transition 
+                    duration-300 hover:scale-105">
                         <div className="flex items-center">
-                            <Image src="/placeholder.svg" alt="" width={24} height={24} className="mr-3 rounded" />
+                            <Image src="/links/moneypool.png" alt="" width={50} height={50} className="mr-3 rounded" />
                             <span>Moneypool</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -109,9 +131,15 @@ export default function Links() {
                 <Link href="https://drive.google.com/drive/folders/1-f8K7CEGO_hm5Y_Wu_DSwCf3StHb9qZK" className="block"
                     target="_blank"
                     rel="noopener noreferrer">
-                    <button className="w-full bg-white text-purple-700 rounded-full py-3 px-4 flex items-center justify-between hover:bg-gray-100 transform transition duration-300 hover:scale-105">
+                    <button className="
+                    w-full px-3 bg-white text-purple-700 
+                    border-white border-2
+                    rounded-full py-3 flex items-center justify-between
+                    hover:border-purple-700 hover:border-2
+                     transform transition 
+                    duration-300 hover:scale-105">
                         <div className="flex items-center">
-                            <Image src="/placeholder.svg" alt="" width={24} height={24} className="mr-3 rounded" />
+                            <Image src="/links/album.png" alt="" width={50} height={50} className="mr-3 rounded" />
                             <span>ALBUM - Google Drive</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
