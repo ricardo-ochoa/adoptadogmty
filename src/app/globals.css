@@ -10,12 +10,33 @@
 
 body {
   color: var(--foreground-rgb);
-  background: linear-gradient(to bottom, transparent, var(--background-end-rgb)),
-    var(--background-start-rgb);
+  background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/huellas-RnBAMMNDm5eyvSHunoT7J2fKQdRWHi.svg"),
+    linear-gradient(to bottom, transparent, var(--background-end-rgb));
+  background-color: var(--background-start-rgb);
+  background-repeat: repeat;
+  background-size: 200px, 100% 100%;
+  background-position: center;
+  min-height: 100vh;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.profilePic {
+  box-shadow: 0px 18px 25px -9px rgba(130, 222, 222, 0.82);
+  -webkit-box-shadow: 0px 18px 25px -9px rgba(130, 222, 222, 0.82);
+  -moz-box-shadow: 0px 18px 25px -9px rgba(130, 222, 222, 0.82);
+}
+
+.patternBody {
+  color: var(--foreground-rgb);
+  background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/huellas-RnBAMMNDm5eyvSHunoT7J2fKQdRWHi.svg"),
+    linear-gradient(to bottom, transparent, var(--background-end-rgb));
+  background-color: var(--background-start-rgb);
+  background-repeat: repeat;
+  background-size: 200px, 100% 100%;
+  background-position: center;
 }
