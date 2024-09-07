@@ -1,14 +1,33 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Header from "../components/Header/Header";
 import Head from 'next/head';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AdoptAdog  Monterrey",
-  description: "Centro de Adopciones Creemos en un mundo mejor con respeto y amor a los animales",
+  title: "AdoptAdog Monterrey",
+  description: "Centro de Adopciones. Creemos en un mundo mejor con respeto y amor a los animales",
+  openGraph: {
+    title: "AdoptAdog Monterrey",
+    description: "Centro de Adopciones. Creemos en un mundo mejor con respeto y amor a los animales",
+    url: "https://www.adoptadogmty.com",
+    type: "website",
+    images: [
+      {
+        url: "/image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AdoptAdog Monterrey",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AdoptAdog Monterrey",
+    description: "Centro de Adopciones. Creemos en un mundo mejor con respeto y amor a los animales",
+    images: ["/image.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -20,12 +39,8 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <meta property="og:image" content="/image.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:title" content="El título de tu página" />
-        <meta property="og:description" content="Descripción de tu página" />
+        <meta property="twitter:image" content="/image.jpg" />
       </Head>
-      {/* <Header /> */}
       <body className={inter.className}>{children}</body>
     </html>
   );
