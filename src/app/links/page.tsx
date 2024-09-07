@@ -3,7 +3,14 @@ import Link from 'next/link';
 import 'animate.css';
 // import BackgroundPattern from '@/components/BackgroundPattern/BackgroundPattern';
 
-const LinkButton = ({ href, imageSrc, altText, text }) => (
+interface LinkButtonProps {
+    href: string;
+    imageSrc: string;
+    altText: string;
+    text: string;
+}
+
+const LinkButton: React.FC<LinkButtonProps> = ({ href, imageSrc, altText, text }) => (
     <Link href={href} className="block" target="_blank" rel="noopener noreferrer">
         <button className="w-full px-3 bg-white text-purple-700 border-white border-2 rounded-full py-3 flex items-center justify-between hover:border-purple-700 hover:border-2 transform transition duration-300 hover:scale-105">
             <div className="flex items-center">
@@ -17,13 +24,13 @@ const LinkButton = ({ href, imageSrc, altText, text }) => (
     </Link>
 );
 
-const SocialLink = ({ href, icon }) => (
-    <Link
-        href={href}
-        className="group relative"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
+interface SocialLinkProps {
+    href: string;
+    icon: string;
+}
+
+const SocialLink: React.FC<SocialLinkProps> = ({ href, icon }) => (
+    <Link href={href} className="group relative" target="_blank" rel="noopener noreferrer">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -39,6 +46,7 @@ const SocialLink = ({ href, icon }) => (
         </span>
     </Link>
 );
+
 
 const Links = () => {
     const links = [
