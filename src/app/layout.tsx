@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Just_Another_Hand } from "next/font/google";
 import Head from 'next/head';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const justAnotherHand = Just_Another_Hand({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: "AdoptAdog Monterrey",
@@ -41,7 +46,9 @@ export default function RootLayout({
         <meta property="og:image" content="/image.jpg" />
         <meta property="twitter:image" content="/image.jpg" />
       </Head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+      </body>
     </html>
   );
 }
