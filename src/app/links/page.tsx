@@ -1,13 +1,24 @@
+'use client'
 import Image from 'next/image';
 import Link from 'next/link';
+import { Share } from 'lucide-react'
 import 'animate.css';
-// import BackgroundPattern from '@/components/BackgroundPattern/BackgroundPattern';
+import { useState } from 'react';
+import ShareModal from './ShareModal';
 
 interface LinkButtonProps {
     href: string;
     imageSrc: string;
     altText: string;
     text: string;
+}
+
+interface ShareModalProps {
+    url: string;
+    socialTypes: string[];
+    style?: React.CSSProperties;
+    isOpen?: boolean;
+    onClose?: () => void;
 }
 
 const LinkButton: React.FC<LinkButtonProps> = ({ href, imageSrc, altText, text }) => (
@@ -49,6 +60,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon }) => (
 
 
 const Links = () => {
+    const [isOpen, setIsOpen] = useState(false)
     const links = [
         {
             href: "https://docs.google.com/forms/d/e/1FAIpQLScrPt4pwYgOByXzmKwuBN3ZhPJ1WN4tjCH4pHlSaZtlo7JnHA/viewform",
@@ -91,7 +103,7 @@ const Links = () => {
     return (
         <>
             <div className="min-h-screen flex flex-col items-center justify-center">
-                <div className="text-center mb-8">
+                <div className="text-center mb-4">
                     <Image
                         src="/profilepic.jpg"
                         alt="AdoptADog Logo"
@@ -103,9 +115,31 @@ const Links = () => {
                     <p className="text-purple-700 text-sm max-w-xs mx-auto animate__animated animate__fadeInDown animate__delay-1s">
                         Centro de Adopciones Creemos en un mundo mejor con respeto y amor a los animales
                     </p>
-                </div>
 
-                <div className="flex gap-8 mb-8 animate__animated animate__fadeInDown animate__delay-1s">
+                </div>
+                {/* Botón para abrir el modal de compartir */}
+                <button
+                    onClick={() => setIsOpen(true)}
+                    className="animate__animated animate__fadeInDown animate__delay-1s mb-8
+                     bg-white text-purple-700 border-2 border-purple-700 px-4 py-2 rounded 
+                     flex items-center space-x-2 hover:bg-purple-100"
+                >
+                    <Share className="text-purple-700" size={15} /> {/* Ícono de lucide-react */}
+                    <span>Compartir</span>
+                </button>
+
+
+                {isOpen && (
+                    <ShareModal
+                        url={'https://www.adoptadogmty.com'}
+                        socialTypes={['facebook', 'twitter', 'reddit', 'linkedin', 'email']}
+                        style={{ width: '100%' }}
+                        isOpen={isOpen}
+                        onClose={() => setIsOpen(false)}
+                    />
+                )}
+
+                <div className="flex gap-8 mb-10 animate__animated animate__fadeInDown animate__delay-1s">
                     {socialLinks.map((social, index) => (
                         <SocialLink key={index} {...social} />
                     ))}
