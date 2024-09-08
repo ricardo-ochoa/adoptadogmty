@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShareSocial } from 'react-share-social';
-import { X } from 'lucide-react'; // Importa el ícono X
-
+import { X } from 'lucide-react';
+import Image from 'next/image';
 
 interface ShareModalProps {
   url: string;
@@ -20,7 +20,20 @@ const ShareModal: React.FC<ShareModalProps> = ({ url, socialTypes, style, isOpen
         <button onClick={onClose} className="float-right text-gray-500">
           <X size={24} />
         </button>
-        <h2 className="text-lg mb-4">Compártenos con ♥️ 🫶🏻 🐕🐩🐈🐈‍⬛ </h2>
+        <h2 className="text-lg mb-4">Compártenos con ♥️ 🫶🏻 🐕🐩🐈🐈‍⬛</h2>
+
+        {/* Agregar la imagen QR */}
+        <div className="flex justify-center mb-4">
+          <Image
+            src="/links/qrcode.svg" // Ruta de la imagen SVG
+            alt="Código QR"
+            width={250}
+            height={250}
+            className="rounded-lg"
+          />
+        </div>
+
+        {/* Componente ShareSocial */}
         <ShareSocial
           url={url}
           socialTypes={socialTypes}

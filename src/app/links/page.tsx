@@ -23,9 +23,9 @@ interface ShareModalProps {
 
 const LinkButton: React.FC<LinkButtonProps> = ({ href, imageSrc, altText, text }) => (
     <Link href={href} className="block" target="_blank" rel="noopener noreferrer">
-        <button className="w-full px-3 bg-white text-purple-700 border-white border-2 rounded-full py-3 flex items-center justify-between hover:border-purple-700 hover:border-2 transform transition duration-300 hover:scale-105">
+        <button className="w-full px-3 bg-white text-purple-700 border-white border-2 rounded-full py-1 flex items-center justify-between hover:border-purple-700 hover:border-2 transform transition duration-300 hover:scale-105">
             <div className="flex items-center">
-                <Image src={imageSrc} alt={altText} width={50} height={50} className="mr-3 rounded" />
+                <Image src={imageSrc} alt={altText} width={40} height={40} className="mr-3 rounded" />
                 <span>{text}</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
