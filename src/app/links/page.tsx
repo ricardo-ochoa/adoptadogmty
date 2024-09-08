@@ -102,7 +102,7 @@ const Links = () => {
     return (
         <>
             <div className="min-h-screen flex flex-col items-center justify-center">
-                <div className="text-center my-3">
+                <div className="text-center mt-1">
                     <Image
                         src="/profilepic.jpg"
                         alt="AdoptADog Logo"
@@ -120,10 +120,10 @@ const Links = () => {
                 <button
                     onClick={() => setIsOpen(true)}
                     className="animate__animated animate__fadeInDown animate__delay-1s mb-8 mt-4
-                     bg-white text-purple-700 border-2 border-purple-700 px-4 py-2 rounded 
+                     bg-white text-purple-700 border-2 border-purple-700 px-4 py-1.5 rounded-full 
                      flex items-center space-x-2 hover:bg-purple-100"
                 >
-                    <Share className="text-purple-700" size={15} /> {/* Ícono de lucide-react */}
+                    <Share className="text-purple-700" size={20} /> {/* Ícono de lucide-react */}
                     <span>Compartir</span>
                 </button>
 
