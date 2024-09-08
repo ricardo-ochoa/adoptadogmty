@@ -4,7 +4,7 @@
 
 :root {
   --foreground-rgb: #000000;
-  --background-start-rgb: #ffffff;
+  --background-start-rgb: #f6ffff;
   --background-end-rgb: #84dde2;
 }
 
@@ -18,13 +18,25 @@
 
 body {
   color: var(--foreground-rgb);
+  background-color: var(--background-start-rgb);
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 50%; /* Esto asegura que el background comience desde la mitad */
+  left: 0;
+  width: 100%;
+  height: 50vh; /* La mitad inferior de la pantalla */
   background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/huellas-RnBAMMNDm5eyvSHunoT7J2fKQdRWHi.svg"),
     linear-gradient(to bottom, transparent, var(--background-end-rgb));
-  background-color: var(--background-start-rgb);
   background-repeat: repeat;
   background-size: 200px, 100% 100%;
   background-position: center;
-  min-height: 100vh;
+  z-index: -1; /* Asegura que esté detrás del contenido */
 }
 
 @layer utilities {
