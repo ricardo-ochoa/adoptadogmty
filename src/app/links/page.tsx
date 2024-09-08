@@ -23,10 +23,10 @@ interface ShareModalProps {
 
 const LinkButton: React.FC<LinkButtonProps> = ({ href, imageSrc, altText, text }) => (
     <Link href={href} className="block" target="_blank" rel="noopener noreferrer">
-        <button className="w-full px-3 bg-white text-purple-700 border-white border-2 rounded-full py-1 flex items-center justify-between hover:border-purple-700 hover:border-2 transform transition duration-300 hover:scale-105">
+        <button className="w-full px-1 bg-white text-purple-700 border-white border-2 rounded-full py-1 flex items-center justify-between hover:border-purple-700 hover:border-2 transform transition duration-300 hover:scale-105">
             <div className="flex items-center">
                 <Image src={imageSrc} alt={altText} width={40} height={40} className="mr-3 rounded" />
-                <span>{text}</span>
+                <p className='text-sm'>{text}</p>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a 1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -58,14 +58,13 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon }) => (
     </Link>
 );
 
-
 const Links = () => {
     const [isOpen, setIsOpen] = useState(false)
     const links = [
         {
             href: "https://docs.google.com/forms/d/e/1FAIpQLScrPt4pwYgOByXzmKwuBN3ZhPJ1WN4tjCH4pHlSaZtlo7JnHA/viewform",
             imageSrc: "/links/adopcion.png",
-            altText: "",
+            altText: "Adopción Responsable",
             text: "Adopción Responsable"
         },
         {
@@ -77,19 +76,19 @@ const Links = () => {
         {
             href: "https://api.whatsapp.com/send?phone=5218116028654&text=Hola%2C%20quiero%20hacer%20una%20donaci%C3%B3n%20en%20especie%20para%20AdoptAdog%2C%20%C2%BFD%C3%B3nde%20los%20puedo%20ver%3F",
             imageSrc: "/links/especie.webp",
-            altText: "",
+            altText: "Donaciones en especie",
             text: "Donaciones en especie"
         },
         {
             href: "https://www.moneypool.mx/p/TZT1z90",
             imageSrc: "/links/moneypool.png",
-            altText: "",
+            altText: "Moneypool Adoptadog",
             text: "Moneypool"
         },
         {
             href: "https://drive.google.com/drive/folders/1-f8K7CEGO_hm5Y_Wu_DSwCf3StHb9qZK",
             imageSrc: "/links/album.png",
-            altText: "",
+            altText: "Album adoptadog",
             text: "ALBUM - Google Drive"
         }
     ];
@@ -103,24 +102,24 @@ const Links = () => {
     return (
         <>
             <div className="min-h-screen flex flex-col items-center justify-center">
-                <div className="text-center mb-4">
+                <div className="text-center my-3">
                     <Image
                         src="/profilepic.jpg"
                         alt="AdoptADog Logo"
-                        width={150}
-                        height={150}
-                        className="mx-auto mb-4 rounded-full bg-white p-2 animate__animated animate__fadeInDown profilePic"
+                        width={120}
+                        height={120}
+                        className="mx-auto mb-3 rounded-full bg-white p-2 animate__animated animate__fadeInDown profilePic"
                     />
-                    <h1 className="text-2xl font-bold text-purple-700 mb-2 animate__animated animate__fadeInDown animate__delay-1s">@AdoptADogMTY</h1>
-                    <p className="text-purple-700 text-sm max-w-xs mx-auto animate__animated animate__fadeInDown animate__delay-1s">
-                        Centro de Adopciones Creemos en un mundo mejor con respeto y amor a los animales
+                    <h1 className="text-xl font-bold text-purple-700 mb-2 animate__animated animate__fadeInDown animate__delay-1s">@AdoptADogMTY</h1>
+                    <p className="text-sm text-purple-700 max-w-xs mx-auto animate__animated animate__fadeInDown animate__delay-1s">
+                        Centro de Adopciones. Creemos en un mundo mejor con respeto y amor a los animales
                     </p>
 
                 </div>
                 {/* Botón para abrir el modal de compartir */}
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="animate__animated animate__fadeInDown animate__delay-1s mb-8
+                    className="animate__animated animate__fadeInDown animate__delay-1s mb-8 mt-4
                      bg-white text-purple-700 border-2 border-purple-700 px-4 py-2 rounded 
                      flex items-center space-x-2 hover:bg-purple-100"
                 >
@@ -132,20 +131,20 @@ const Links = () => {
                 {isOpen && (
                     <ShareModal
                         url={'https://www.adoptadogmty.com'}
-                        socialTypes={['facebook', 'twitter', 'reddit', 'linkedin', 'email']}
+                        socialTypes={['facebook', 'twitter', 'reddit', 'linkedin', 'email', 'whatsapp']}
                         style={{ width: '100%' }}
                         isOpen={isOpen}
                         onClose={() => setIsOpen(false)}
                     />
                 )}
 
-                <div className="flex gap-8 mb-10 animate__animated animate__fadeInDown animate__delay-1s">
+                <div className="flex gap-8 mb-8 animate__animated animate__fadeInDown animate__delay-1s">
                     {socialLinks.map((social, index) => (
                         <SocialLink key={index} {...social} />
                     ))}
                 </div>
 
-                <div className="w-full max-w-md space-y-3 mb-10 px-6 lg:px-0 animate__animated animate__backInUp animate__delay-1s">
+                <div className="w-full max-w-md space-y-3 mb-10 px-8 lg:px-0 animate__animated animate__backInUp animate__delay-1s">
                     {links.map((link, index) => (
                         <LinkButton key={index} {...link} />
                     ))}
