@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import 'animate.css';
 import { useState } from 'react';
-import ShareModal from './ShareModal';
 
 interface LinkButtonProps {
     href: string;
