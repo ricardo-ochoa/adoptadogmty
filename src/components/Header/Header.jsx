@@ -20,7 +20,7 @@ export default function Component() {
   }
 
   return (
-    <div className="bg-gradient-to-r from-cyan-600 to-bg-black shadow-lg">
+    <div className="bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -30,29 +30,32 @@ export default function Component() {
                 alt="Logo"
                 width={40}
                 height={40}
-                className="h-8 w-auto filter brightness-0 invert"
+                className="h-8 w-auto"
+                style={{
+                  filter: '#38C8CF',
+                }}
               />
             </Link>
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
               <li>
-                <Link href="/adopciones" className="text-white hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
+                <Link href="/adopciones" className="text-black hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
                     Perrito y gatitos
                 </Link>
               </li>
               <li>
-                <Link href="/requisitos" className="text-white hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
+                <Link href="/requisitos" className="text-black hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
                     Requisitos
                 </Link>
               </li>
               <li>
-                <Link href="/contacto" className="text-white hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
+                <Link href="/contacto" className="text-black hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
                     Contacto
                 </Link>
               </li>
               <li>
-                <Link href="/donaciones" className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                <Link href="/links" className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                   Donaciones
                 </Link>
               </li>
@@ -61,7 +64,7 @@ export default function Component() {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-indigo-200 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition duration-300 ease-in-out"
+              className="inline-flex items-center justify-center p-2 rounded-md text-teal-500 hover:text-indigo-200 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition duration-300 ease-in-out"
             >
               <span className="sr-only">Abrir menú principal</span>
               {isMenuOpen ? (

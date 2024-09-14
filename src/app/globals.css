@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "animate.css/animate.min.css";
 
 :root {
   --foreground-rgb: #000000;
@@ -12,33 +13,47 @@
   padding: 0 !important;
 }
 
+.petFaceFixed {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .jss1 {
   padding: 0 !important;
 }
 
 .homeContainer {
   text-align: center;
-  margin: 2rem auto;
   padding: 2rem;
-  max-width: 600px;
 }
 
 .title {
   font-family: "Just Another Hand";
   font-size: 2.5rem;
   color: #333;
+  margin-bottom: 2.5rem;
 }
 
 .highlight {
-  color: #00bcd4; /* Ajusta este color según el color que deseas para "adoptan" */
+  color: #00bcd4;
 }
 
 .paragraph {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   color: #333;
   margin-top: 1rem;
+  line-height: 200%;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto; /* Centramos el párrafo */
 }
 
 .finalText {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Just_Another_Hand } from "next/font/google";
 import Head from 'next/head';
+import Header from '../components/Header/Header';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -47,6 +48,7 @@ export default function RootLayout({
         <meta property="twitter:image" content="/image.jpg" />
       </Head>
       <body className={inter.className}>
+        <Header />
         {children}
       </body>
     </html>
