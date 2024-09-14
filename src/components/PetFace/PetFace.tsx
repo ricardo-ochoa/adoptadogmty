@@ -8,7 +8,15 @@ const justAnotherHand = Caveat({
     subsets: ['latin'],
 });
 
-const PetProfile = ({ name, age, imageSrc, className, isMobile }) => (
+interface PetProfileProps {
+    name: string;
+    age: string;
+    imageSrc: string;
+    className?: string;
+    isMobile: boolean;
+}
+
+const PetProfile: React.FC<PetProfileProps> = ({ name, age, imageSrc, className = '', isMobile }) => (
     <div className={`flex flex-col items-center ${isMobile ? 'w-full' : 'w-1/3'} px-2 ${className}`}>
         <h1 className={`text-2xl font-bold mb-1 ${justAnotherHand.className} animate__animated animate__fadeInUp animate__delay-1s`}>{name}</h1>
         <p className="text-md text-teal-500 mb-1 animate__animated animate__fadeInUp animate__delay-1s">{age}</p>
