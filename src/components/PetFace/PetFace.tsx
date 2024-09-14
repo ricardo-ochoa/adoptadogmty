@@ -80,14 +80,15 @@ export default function Component() {
 
 
     return (
-        <div className="petFaceFixed relative flex justify-center items-center">
+        <div className={`${isMobile ? 'mt-6 -mb-20' : 'petFaceFixed'} relative flex justify-center items-center`}>
             {isMobile ? (
-                // Mostrar solo una mascota en dispositivos móviles
-                <PetProfile
-                    {...pets[currentGroup]}
-                    className=""
-                    isMobile={isMobile}
-                />
+                <>
+                    <PetProfile
+                        {...pets[currentGroup]}
+                        className=""
+                        isMobile={isMobile}
+                    />
+                </>
             ) : (
                 // Mostrar las tres mascotas en pantallas grandes
                 <>

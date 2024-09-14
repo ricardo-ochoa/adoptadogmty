@@ -31,6 +31,7 @@
 .homeContainer {
   text-align: center;
   padding: 2rem;
+  padding-bottom: 0;
 }
 
 .title {
@@ -66,6 +67,7 @@
 body {
   color: var(--foreground-rgb);
   background-color: var(--background-start-rgb);
+  /* background-color: var(--background-end-rgb); */
   min-height: 100vh;
   margin: 0;
   position: relative;
@@ -74,16 +76,16 @@ body {
 body::after {
   content: "";
   position: absolute;
-  top: 50%; /* Esto asegura que el background comience desde la mitad */
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 50vh; /* La mitad inferior de la pantalla */
+  height: 50vh;
   background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/huellas-RnBAMMNDm5eyvSHunoT7J2fKQdRWHi.svg"),
     linear-gradient(to bottom, transparent, var(--background-end-rgb));
   background-repeat: repeat;
   background-size: 200px, 100% 100%;
   background-position: center;
-  z-index: -1; /* Asegura que esté detrás del contenido */
+  z-index: -1;
 }
 
 @layer utilities {
