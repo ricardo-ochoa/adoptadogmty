@@ -24,7 +24,7 @@ export default function Component() {
   // }
 
   return (
-    <div className="bg-white">
+    <div className="background-color:'#f6ffff">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -87,8 +87,8 @@ export default function Component() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+        <div className="md:hidden" style={{backgroundColor:"#f6ffff"}}>
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               href="/adopciones"
               className="block px-3 py-2 rounded-md text-base font-medium text-black hover:bg-teal-100 transition duration-300 ease-in-out"

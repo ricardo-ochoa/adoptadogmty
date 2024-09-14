@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image';
 import Link from 'next/link';
-import { Share } from 'lucide-react'
 import 'animate.css';
 import { useState } from 'react';
 import ShareModal from './ShareModal';
@@ -25,7 +24,11 @@ const LinkButton: React.FC<LinkButtonProps> = ({ href, imageSrc, altText, text }
     <Link href={href} className="block" target="_blank" rel="noopener noreferrer">
         <button className="w-full px-1 bg-white text-purple-700 border-white border-2 rounded-full py-1 flex items-center justify-between hover:border-purple-700 hover:border-2 transform transition duration-300 hover:scale-105">
             <div className="flex items-center">
-                <Image src={imageSrc} alt={altText} width={40} height={40} className="mr-3 rounded" />
+                {typeof imageSrc === 'string' ? (
+                    <Image src={imageSrc} alt={altText} width={40} height={40} className="mr-3 rounded" />
+                ) : (
+                    <div className="mr-3">{imageSrc}</div>
+                )}
                 <p className='text-sm'>{text}</p>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -62,35 +65,17 @@ const Links = () => {
     const [isOpen, setIsOpen] = useState(false)
     const links = [
         {
+            href: "https://api.whatsapp.com/send?phone=5218116028654&text=Hola%20quiero%20contactar%20con%20AdoptADog%20MTY",
+            imageSrc: '/links/whatsApp.svg',
+            altText: "WhatsApp",
+            text: "Contactar por WhatsApp"
+        },
+        {
             href: "https://docs.google.com/forms/d/e/1FAIpQLScrPt4pwYgOByXzmKwuBN3ZhPJ1WN4tjCH4pHlSaZtlo7JnHA/viewform",
             imageSrc: "/links/adopcion.png",
             altText: "Adopción Responsable",
             text: "Adopción Responsable"
         },
-        {
-            href: "https://www.paypal.com/paypalme/AdoptadogDonaciones",
-            imageSrc: "/links/paypal.svg",
-            altText: "Donaciones paypal",
-            text: "Donaciones con Paypal"
-        },
-        {
-            href: "https://api.whatsapp.com/send?phone=5218116028654&text=Hola%2C%20quiero%20hacer%20una%20donaci%C3%B3n%20en%20especie%20para%20AdoptAdog%2C%20%C2%BFD%C3%B3nde%20los%20puedo%20ver%3F",
-            imageSrc: "/links/especie.webp",
-            altText: "Donaciones en especie",
-            text: "Donaciones en especie"
-        },
-        {
-            href: "https://www.moneypool.mx/p/TZT1z90",
-            imageSrc: "/links/moneypool.png",
-            altText: "Moneypool Adoptadog",
-            text: "Moneypool"
-        },
-        {
-            href: "https://drive.google.com/drive/folders/1-f8K7CEGO_hm5Y_Wu_DSwCf3StHb9qZK",
-            imageSrc: "/links/album.png",
-            altText: "Perritos y Gatitos AdoptADog",
-            text: "Perritos y Gatitos - Google Drive"
-        }
     ];
 
     const socialLinks = [
@@ -102,7 +87,7 @@ const Links = () => {
     return (
         <>
             <div className="min-h-screen flex flex-col items-center justify-center">
-                <div className="text-center mt-1">
+                <div className="text-center mb-10">
                     <Image
                         src="/profilepic.jpg"
                         alt="AdoptADog Logo"
@@ -114,29 +99,7 @@ const Links = () => {
                     <p className="text-sm text-purple-700 max-w-xs mx-auto animate__animated animate__fadeInDown animate__delay-1s">
                         Centro de Adopciones. Creemos en un mundo mejor con respeto y amor a los animales
                     </p>
-
                 </div>
-                {/* Botón para abrir el modal de compartir */}
-                <button
-                    onClick={() => setIsOpen(true)}
-                    className="animate__animated animate__fadeInDown animate__delay-1s mb-8 mt-4
-                     bg-white text-purple-700 border-2 border-purple-700 px-4 py-1.5 rounded-full 
-                     flex items-center space-x-2 hover:bg-purple-100"
-                >
-                    <Share className="text-purple-700" size={20} /> {/* Ícono de lucide-react */}
-                    <span>Compartir</span>
-                </button>
-
-
-                {isOpen && (
-                    <ShareModal
-                        url={'https://www.adoptadogmty.com'}
-                        socialTypes={['facebook', 'twitter', 'reddit', 'linkedin', 'email', 'whatsapp']}
-                        style={{ width: '100%' }}
-                        isOpen={isOpen}
-                        onClose={() => setIsOpen(false)}
-                    />
-                )}
 
                 <div className="flex gap-8 mb-8 animate__animated animate__fadeInDown animate__delay-1s">
                     {socialLinks.map((social, index) => (
@@ -149,8 +112,29 @@ const Links = () => {
                         <LinkButton key={index} {...link} />
                     ))}
                 </div>
+
+                {/* Sección con título, subtítulo y mapa */}
+                <h2 className="text-lg font-bold mb-2 animate__animated animate__backInUp animate__delay-2s text-purple-700">
+                    Conoce nuestro centro</h2>
+                <a
+                    href="https://maps.app.goo.gl/qyqY3MjcjQvN1r1Y8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-500 hover:underline animate__animated animate__backInUp animate__delay-2s"
+                >
+                    <p className="text-sm text-gray-600 mb-4">Ave. Valle Real, Carr. a San Roque, 67280 N.L.</p>
+                </a>
+                <div className="w-full max-w-lg animate__animated animate__backInUp animate__delay-2s p-2">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4534.758680226316!2d-100.16064018819075!3d25.610724977352938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662c329d6b5f039%3A0xac768f652534c0f6!2sADOPTADOG!5e1!3m2!1ses-419!2smx!4v1726299050986!5m2!1ses-419!2smx"
+                        className="w-full md:w-[500px] h-[250px]"
+                        style={{ border: '4px solid white' }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
             </div>
-            {/* <BackgroundPattern /> */}
         </>
     );
 };
