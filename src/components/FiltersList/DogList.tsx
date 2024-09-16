@@ -2,20 +2,9 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card/Card"
 import { ImageCarousel } from "../ui/CarouselComponent";
 import { Badge } from "../ui/Badge/Badge";
+import { Dog } from "@/lib/types";
 
 type FilterType = 'cachorro' | 'hembra' | 'macho';
-
-interface Dog {
-    id: string;
-    tipo: string;
-    nombre: string;
-    edad: string;
-    talla: string;
-    historia: string;
-    caracter: string;
-    texto_especial?: string;
-    imagenes: string | string[];
-}
 
 interface DogListProps {
     dogs: Dog[];

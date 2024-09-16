@@ -1,34 +1,23 @@
-'use client'; // Indicar que es un componente del cliente
-import { useState } from 'react';
+// FiltersList.tsx
+'use client'
+import React, { useState } from 'react';
 import Filters from './Filters';
 import { DogList } from './DogList';
+import { Dog, FilterType } from '../../lib/types'; // Importar el tipo Dog y FilterType
 
-// Definir un tipo para los filtros
-type FilterType = 'cachorro' | 'hembra' | 'macho';
-
-interface Dog {
-    id: string;
-    tipo: string;
-    nombre: string;
-    edad: string;
-    talla: string;
-    historia: string;
-    caracter: string;
-    texto_especial?: string;
-    imagenes: string | string[];
+interface FiltersListProps {
+    dogProfiles: Dog[]; // Aquí defines que se espera un array de objetos Dog
 }
 
-interface ClientComponentProps {
-    dogProfiles: Dog[];
-}
-
-export const FiltersList = ({ dogProfiles }: ClientComponentProps) => {
+const FiltersList: React.FC<FiltersListProps> = ({ dogProfiles }) => {
     const [selectedFilter, setSelectedFilter] = useState<FilterType>('cachorro');
 
     // Filtros para dividir a las mascotas
     const cachorros = dogProfiles.filter((dog: Dog) => dog.tipo === "cachorro");
     const hembras = dogProfiles.filter((dog: Dog) => dog.tipo === "hembra");
     const machos = dogProfiles.filter((dog: Dog) => dog.tipo === "macho");
+    const gatitos = dogProfiles.filter((dog: Dog) => dog.tipo === "gatito");
+    const gatitas = dogProfiles.filter((dog: Dog) => dog.tipo === "gatita");
 
     return (
         <div className="p-6">
@@ -42,6 +31,10 @@ export const FiltersList = ({ dogProfiles }: ClientComponentProps) => {
             {selectedFilter === "cachorro" && <DogList dogs={cachorros} title="Cachorros" />}
             {selectedFilter === "hembra" && <DogList dogs={hembras} title="Hembras" />}
             {selectedFilter === "macho" && <DogList dogs={machos} title="Machos" />}
+            {selectedFilter === "gatito" && <DogList dogs={gatitos} title="Gatitos" />}
+            {selectedFilter === "gatita" && <DogList dogs={gatitas} title="Gatitas" />}
         </div>
     );
 };
+
+export default FiltersList;
