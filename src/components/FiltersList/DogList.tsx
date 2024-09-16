@@ -43,7 +43,7 @@ export const DogList: React.FC<DogListProps> = ({ dogs, title }) => (
                                 />
                             )}
                             <div className="flex justify-center items-center">
-                                <p className={`text-3xl text-black ${justAnotherHand.className}`}>{dog.nombre}</p>
+                                <p className={`text-2xl md:text-3xl text-black ${justAnotherHand.className}`}>{dog.nombre}</p>
                                 <p className="text-sm text-gray-600 ml-2 mt-1">· {dog.edad}</p>
                             </div>
                         </CardContent>
