@@ -24,10 +24,12 @@
   align-items: center;
 }
 
-.jss1 {
-  padding: 0 !important;
-}
-.jss9 {
+.jss1,
+.jss9,
+.jss17,
+.jss25,
+.jss33,
+.jss41 {
   padding: 0 !important;
 }
 

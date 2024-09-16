@@ -65,7 +65,7 @@ const Links = () => {
     const links = [
         {
             href: "https://api.whatsapp.com/send?phone=5218116028654&text=Hola%20quiero%20contactar%20con%20AdoptADog%20MTY",
-            imageSrc: '/links/whatsApp.svg',
+            imageSrc: '/links/whatsApp.png',
             altText: "WhatsApp",
             text: "Contactar por WhatsApp"
         },
