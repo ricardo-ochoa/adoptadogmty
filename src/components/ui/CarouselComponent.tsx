@@ -27,41 +27,32 @@ export function ImageCarousel({ images }: { images: string[] }) {
     }
 
     return (
-        <Carousel className="w-full max-w-lg relative overflow-hidden">
+        <Carousel className="w-full relative overflow-hidden">
             <CarouselContent
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }} // Mueve las imágenes según el índice actual
             >
                 {images.map((image, index) => (
-                    <CarouselItem key={index} className="min-w-full">
-                        <div className="p-1">
-                            <Card>
-                                <CardContent className="flex aspect-square items-center justify-center p-6">
-                                    <img
-                                        src={image}
-                                        alt={`Image ${index + 1}`}
-                                        className="w-full h-full object-cover rounded-md"
-                                    />
-                                </CardContent>
-                            </Card>
-                        </div>
+                    <CarouselItem key={index}>
+                        <CardContent className="flex aspect-square items-center justify-center">
+                            <img
+                                src={image}
+                                alt={`Image ${index + 1}`}
+                                className="w-full h-full object-cover"
+                            />
+                        </CardContent>
                     </CarouselItem>
                 ))}
             </CarouselContent>
 
-            {/* Mostrar botones solo si hay más de una imagen */}
             {images.length > 1 && (
                 <>
-                    <div className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-2">
-                        <CarouselPrevious
-                            onClick={handlePrevious}
-                        />
-                    </div>
-                    <div className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-2">
-                        <CarouselNext
-                            onClick={handleNext}
-                        />
-                    </div>
+                    <CarouselPrevious
+                        onClick={handlePrevious}
+                    />
+                    <CarouselNext
+                        onClick={handleNext}
+                    />
                 </>
             )}
         </Carousel>

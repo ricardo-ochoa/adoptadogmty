@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils"; // Helper para combinar clases
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Carousel wrapper
 export function Carousel({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -28,26 +29,27 @@ export function CarouselItem({ children, className, ...props }: React.HTMLAttrib
     );
 }
 
-// Previous button
 export function CarouselPrevious({ onClick }: { onClick: () => void }) {
     return (
         <button
             onClick={onClick}
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full"
+            className="absolute top-1/2 left-1 transform -translate-y-1/2 p-1 bg-gray-50/50 text-white rounded-full shadow-lg hover:bg-gray-50/60 transition-all duration-300 ease-in-out"
+            aria-label="Anterior"
         >
-            &#9664;
+            <ChevronLeft size={24} />
         </button>
     );
 }
 
-// Next button
+// Botón para ir al siguiente slide
 export function CarouselNext({ onClick }: { onClick: () => void }) {
     return (
         <button
             onClick={onClick}
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full"
+            className="absolute top-1/2 right-1 transform -translate-y-1/2 p-1 bg-gray-50/50 text-white rounded-full shadow-lg hover:bg-gray-50/60 transition-all duration-300 ease-in-out"
+            aria-label="Siguiente"
         >
-            &#9654;
+            <ChevronRight size={24} />
         </button>
     );
 }

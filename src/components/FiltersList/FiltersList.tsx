@@ -1,9 +1,15 @@
-// FiltersList.tsx
 'use client'
 import React, { useState } from 'react';
 import Filters from './Filters';
 import { DogList } from './DogList';
-import { Dog, FilterType } from '../../lib/types'; // Importar el tipo Dog y FilterType
+import { Dog, FilterType } from '../../lib/types';
+import { Caveat } from "next/font/google";
+
+// Importar la fuente
+const justAnotherHand = Caveat({
+    weight: '400',
+    subsets: ['latin'],
+});
 
 interface FiltersListProps {
     dogProfiles: Dog[]; // Aquí defines que se espera un array de objetos Dog
@@ -20,8 +26,8 @@ const FiltersList: React.FC<FiltersListProps> = ({ dogProfiles }) => {
     const gatitas = dogProfiles.filter((dog: Dog) => dog.tipo === "gatita");
 
     return (
-        <div className="p-6">
-            <h1 className="text-3xl font-bold text-center mb-4">
+        <div className="p-1">
+            <h1 className={`${justAnotherHand.className} text-3xl md:text-6xl font-bold text-center mb-4`}>
                 Lomitos y gatitos <span className="text-teal-500">disponibles</span>
             </h1>
             {/* Filtros */}

@@ -1,6 +1,6 @@
 import PetFace from "@/components/PetFace/PetFace";
-import { Caveat } from "next/font/google";
 import Link from 'next/link'; // Importar el componente Link
+import { Caveat } from "next/font/google";
 
 // Importar la fuente
 const justAnotherHand = Caveat({
