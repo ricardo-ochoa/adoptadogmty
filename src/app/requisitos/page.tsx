@@ -146,36 +146,35 @@ const Links = () => {
                     </div>
                 </div>
 
-                <div className="text-center mb-10">
+                <div className="text-center mb-10 animate__animated animate__backInUp">
                     <h2 className=" max-w-xs mx-auto font-bold">
                         Cualquier duda, contáctanos:
                     </h2>
                 </div>
 
-                <div className="flex gap-8 mb-8 animate__animated animate__fadeInDown animate__delay-1s">
+                <div className="flex gap-8 mb-8 animate__animated animate__backInUp">
                     {socialLinks.map((social, index) => (
                         <SocialLink key={index} {...social} />
                     ))}
                 </div>
 
-                <div className="w-full max-w-md space-y-3 mb-10 px-8 lg:px-0 animate__animated animate__backInUp animate__delay-1s">
+                <div className="w-full max-w-md space-y-3 mb-10 px-8 lg:px-0 animate__animated animate__backInUp">
                     {links.map((link, index) => (
                         <LinkButton key={index} {...link} />
                     ))}
                 </div>
 
-                {/* Sección con título, subtítulo y mapa */}
-                <h2 className="text-lg font-bold mb-2 animate__animated animate__backInUp animate__delay-2s text-purple-700">
+                <h2 className="text-lg font-bold mb-2 animate__animated animate__backInUp text-purple-700">
                     Conoce nuestro centro</h2>
                 <a
                     href="https://maps.app.goo.gl/qyqY3MjcjQvN1r1Y8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-teal-500 hover:underline animate__animated animate__backInUp animate__delay-2s"
+                    className="text-teal-500 hover:underline animate__animated animate__backInUp"
                 >
                     <p className="text-sm text-gray-600 mb-4">Ave. Valle Real, Carr. a San Roque, 67280 N.L.</p>
                 </a>
-                <div className="w-full max-w-lg animate__animated animate__backInUp animate__delay-2s p-2">
+                <div className="w-full max-w-lg animate__animated animate__backInUp p-2 mb-10">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4534.758680226316!2d-100.16064018819075!3d25.610724977352938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662c329d6b5f039%3A0xac768f652534c0f6!2sADOPTADOG!5e1!3m2!1ses-419!2smx!4v1726299050986!5m2!1ses-419!2smx"
                         className="w-full md:w-[500px] h-[250px]"

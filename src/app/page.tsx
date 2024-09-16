@@ -16,8 +16,8 @@ export default function Home() {
           Los amigos se <span className={'highlight'}>adoptan</span>, no se compran
         </h1>
         <p className="paragraph">
-          Adopta un <Link href="/links"> <u className="hover:text-purple-700"><strong>perrito o gatito</strong></u></Link> y dale un hogar lleno de amor.
-          Cumple con los <Link href="/links"><u className="hover:text-purple-700"><strong>requisitos</strong></u></Link> de adopción para asegurar una vida feliz para tu nueva mascota.
+          Adopta un <Link href="/adopciones"> <u className="hover:text-purple-700"><strong>perrito o gatito</strong></u></Link> y dale un hogar lleno de amor.
+          Cumple con los <Link href="/requisitos"><u className="hover:text-purple-700"><strong>requisitos</strong></u></Link> de adopción para asegurar una vida feliz para tu nueva mascota.
           También puedes apoyar nuestro proyecto con{' '}
           <Link href="/links">
             <u className="hover:text-purple-700"><strong>donaciones</strong></u>
