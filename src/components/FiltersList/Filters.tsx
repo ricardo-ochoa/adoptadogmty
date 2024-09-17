@@ -8,11 +8,11 @@ interface FiltersProps {
 
 const Filters: React.FC<FiltersProps> = ({ selectedFilter, setFilter }) => {
     const filters = [
-        { label: "Cachorros", value: "cachorro", color: "bg-red-100", ring: "ring-red-200", icon: "/cachorros.svg" },
-        { label: "Hembras", value: "hembra", color: "bg-pink-200", ring: "ring-pink-200", icon: "/hembras.svg" },
-        { label: "Machos", value: "macho", color: "bg-indigo-200", ring: "ring-indigo-200", icon: "/machos.svg" },
-        { label: "Gatitos", value: "gatito", color: "bg-orange-200", ring: "ring-orange-200", icon: "/machos-gatos.svg" },
-        { label: "Gatitas", value: "gatita", color: "bg-yellow-200", ring: "ring-yellow-200", icon: "/Hembras-gatos.svg" },
+        { label: "Cachorros", value: "cachorro", color: "bg-red-100", ring: "ring-red-300", icon: "/cachorros.svg" },
+        { label: "Hembras", value: "hembra", color: "bg-pink-100", ring: "ring-pink-300", icon: "/hembras.svg" },
+        { label: "Machos", value: "macho", color: "bg-indigo-100", ring: "ring-indigo-300", icon: "/machos.svg" },
+        { label: "Gatitos", value: "gatito", color: "bg-orange-100", ring: "ring-orange-300", icon: "/machos-gatos.svg" },
+        { label: "Gatitas", value: "gatita", color: "bg-yellow-100", ring: "ring-yellow-300", icon: "/Hembras-gatos.svg" },
     ];
 
     return (
@@ -25,7 +25,7 @@ const Filters: React.FC<FiltersProps> = ({ selectedFilter, setFilter }) => {
                         ${selectedFilter === filter.value ? `ring-2 ${filter.ring}` : ""}`}
                         onClick={() => setFilter(filter.value as FilterType)}
                     >
-                        <div className="rounded-full bg-white w-11 h-11 flex items-center justify-center">
+                        <div className={`rounded-full bg-white w-11 h-11 flex items-center justify-center`}>
                             <Image src={filter.icon} alt={filter.label} width={28} height={28} />
                         </div>
                         <p className="mx-2 w-fit">{filter.label}</p>
