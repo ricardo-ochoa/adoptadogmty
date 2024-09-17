@@ -8,11 +8,11 @@ interface FiltersProps {
 
 const Filters: React.FC<FiltersProps> = ({ selectedFilter, setFilter }) => {
     const filters = [
-        { label: "Cachorros", value: "cachorro", color: "red-100", ring: "red", icon: "/cachorros.svg" },
-        { label: "Hembras", value: "hembra", color: "pink-200", ring: "pink", icon: "/hembras.svg" },
-        { label: "Machos", value: "macho", color: "indigo-200", ring: "indigo", icon: "/machos.svg" },
-        { label: "Gatitos", value: "gatito", color: "orange-200", ring: "orange", icon: "/machos-gatos.svg" },
-        { label: "Gatitas", value: "gatita", color: "yellow-200", ring: "yellow", icon: "/Hembras-gatos.svg" },
+        { label: "Cachorros", value: "cachorro", color: "bg-red-100", ring: "ring-red-200", icon: "/cachorros.svg" },
+        { label: "Hembras", value: "hembra", color: "bg-pink-200", ring: "ring-pink-200", icon: "/hembras.svg" },
+        { label: "Machos", value: "macho", color: "bg-indigo-200", ring: "ring-indigo-200", icon: "/machos.svg" },
+        { label: "Gatitos", value: "gatito", color: "bg-orange-200", ring: "ring-orange-200", icon: "/machos-gatos.svg" },
+        { label: "Gatitas", value: "gatita", color: "bg-yellow-200", ring: "ring-yellow-200", icon: "/Hembras-gatos.svg" },
     ];
 
     return (
@@ -21,8 +21,8 @@ const Filters: React.FC<FiltersProps> = ({ selectedFilter, setFilter }) => {
                 {filters.map((filter) => (
                     <button
                         key={filter.value}
-                        className={`min-w-fit flex items-center px-2 py-2 rounded-full bg-${filter.color} 
-                        ${selectedFilter === filter.value ? `ring-2 ring-gray-300` : ""}`}
+                        className={`min-w-fit flex items-center px-2 py-2 rounded-full ${filter.color} 
+                        ${selectedFilter === filter.value ? `ring-2 ${filter.ring}` : ""}`}
                         onClick={() => setFilter(filter.value as FilterType)}
                     >
                         <div className="rounded-full bg-white w-11 h-11 flex items-center justify-center">
@@ -35,5 +35,6 @@ const Filters: React.FC<FiltersProps> = ({ selectedFilter, setFilter }) => {
         </div>
     );
 };
+
 
 export default Filters;
