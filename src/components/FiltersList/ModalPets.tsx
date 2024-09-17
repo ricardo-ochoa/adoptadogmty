@@ -5,6 +5,14 @@ import { X } from "lucide-react"; // Usar el ícono de cierre
 import { ImageCarousel } from "../ui/CarouselComponent"; // Asegúrate de que el componente exista
 import { useEffect } from "react"; // Para manejar el ciclo de vida
 import React from "react";
+import { Caveat } from "next/font/google";
+
+// Importar la fuente
+const justAnotherHand = Caveat({
+    weight: '400',
+    subsets: ['latin'],
+});
+
 
 interface ModalProps {
     dog: Dog;
@@ -54,8 +62,8 @@ const ModalPets: React.FC<ModalProps> = ({ dog, onClose }) => {
                     <ImageCarousel
                         images={Array.isArray(dog.imagenes) ? dog.imagenes : [dog.imagenes]}
                     />
-                    <p className="text-sm mb-6"><strong>Carácter:</strong><br /> {dog.caracter}</p>
-                    <p className="text-sm mb-4"><strong>Mi historia:</strong><br /> {dog.historia}</p>
+                    <p className="text-sm mb-6"><strong className={`text-2xl ${justAnotherHand.className}`}>Carácter:</strong><br /> {dog.caracter}</p>
+                    <p className="text-sm mb-4"><strong className={`text-2xl ${justAnotherHand.className}`}>Mi historia:</strong><br /> {dog.historia}</p>
                 </div>
                 {/* Botón en la parte inferior */}
                 <button
