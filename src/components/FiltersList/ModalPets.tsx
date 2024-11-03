@@ -6,6 +6,7 @@ import { ImageCarousel } from "../ui/CarouselComponent"; // Asegúrate de que el
 import { useEffect } from "react"; // Para manejar el ciclo de vida
 import React from "react";
 import { Caveat } from "next/font/google";
+import { calcularEdad } from "@/lib/utils";
 
 // Importar la fuente
 const justAnotherHand = Caveat({
@@ -47,6 +48,8 @@ const ModalPets: React.FC<ModalProps> = ({ dog, onClose }) => {
         };
     }, []);
 
+    console.log(dog.edad)
+
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className={`${bgColor} p-4 max-w-lg mx-auto relative m-2 w-full md:w-auto rounded-lg`}>
@@ -58,7 +61,7 @@ const ModalPets: React.FC<ModalProps> = ({ dog, onClose }) => {
                 </button>
                 {/* Contenedor con scroll si es necesario */}
                 <div className="overflow-y-auto max-h-[500px] md:max-h-[650px]">
-                    <h2 className="text-2xl font-bold mb-4">{dog.nombre} · {dog.edad}</h2>
+                    <h2 className="text-2xl font-bold mb-4">{dog.nombre} · {calcularEdad(dog.edad)}</h2>
                     <ImageCarousel
                         images={Array.isArray(dog.imagenes) ? dog.imagenes : [dog.imagenes]}
                     />

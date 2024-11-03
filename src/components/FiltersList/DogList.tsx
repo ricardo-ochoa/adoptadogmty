@@ -5,6 +5,7 @@ import { Dog } from "@/lib/types";
 import { X } from 'lucide-react';
 import { Caveat } from "next/font/google";
 import ModalPets from './ModalPets';
+import { calcularEdad } from '@/lib/utils';
 
 // Importar la fuente
 const justAnotherHand = Caveat({
@@ -57,7 +58,7 @@ export const DogList: React.FC<DogListProps> = ({ dogs, title }) => {
                                 )}
                                 <div className="flex justify-center items-center">
                                     <p className={`text-2xl md:text-3xl text-black ${justAnotherHand.className}`}>{dog.nombre}</p>
-                                    <p className="text-sm text-gray-600 ml-2 mt-1">· {dog.edad}</p>
+                                    <p className="text-sm text-gray-600 ml-2 mt-1">· {calcularEdad(dog.edad)}</p>
                                 </div>
                             </CardContent>
                         </Card>
