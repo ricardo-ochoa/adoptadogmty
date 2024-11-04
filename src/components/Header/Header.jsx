@@ -54,6 +54,11 @@ export default function Component() {
                 </Link>
               </li>
               <li>
+                <Link href="/voluntarios" className="text-black hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
+                  Voluntarios
+                </Link>
+              </li>
+              <li>
                 <Link href="/contacto" className="text-black hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
                     Contacto
                 </Link>
@@ -102,6 +107,13 @@ export default function Component() {
               onClick={closeMenu}
             >
               Requisitos
+            </Link>
+            <Link
+              href="/voluntarios"
+              className="block px-3 py-2 rounded-md text-base font-medium  text-black hover:bg-teal-100 transition duration-300 ease-in-out"
+              onClick={closeMenu}
+            >
+              Voluntarios
             </Link>
             <Link
               href="/contacto"
