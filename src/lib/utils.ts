@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function calcularEdad(fechaNacimiento) {
+export function calcularEdad(fechaNacimiento: string) {
   // Convertir fecha de formato DD/MM/YYYY a YYYY-MM-DD
   const [dia, mes, año] = fechaNacimiento.split("/");
   const fechaNac = new Date(`${año}-${mes}-${dia}`);

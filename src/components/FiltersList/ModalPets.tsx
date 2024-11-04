@@ -48,7 +48,6 @@ const ModalPets: React.FC<ModalProps> = ({ dog, onClose }) => {
         };
     }, []);
 
-    console.log(dog.edad)
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
