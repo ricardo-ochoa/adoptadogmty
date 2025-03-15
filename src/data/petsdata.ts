@@ -23,34 +23,41 @@ export const fetchDogProfiles = async (): Promise<Dog[]> => {
       complete: (results) => {
         const dogProfiles: Dog[] = results.data.map((profile) => ({
           ...profile,
-          tipo: convertToFilterType(profile.tipo), // Convertimos el tipo aquí
-          imagenes: convertImagesToArray(profile.imagenes), // Convertimos las imágenes a array
+          tipo: convertToFilterType(profile.tipo), // Conversión segura a FilterType
+          imagenes: convertImagesToArray(profile.imagenes), // Convierte imágenes a array
         }));
+
         resolve(dogProfiles);
       },
-      error: (error: { message: any; }) => reject(error.message),
+      error: (error: { message: any }) => reject(error.message),
     });
   });
 };
 
 // Convertir 'tipo' en 'FilterType'
 const convertToFilterType = (tipo: string): FilterType => {
-  switch (tipo) {
-    case 'cachorro':
-    case 'hembra':
-    case 'macho':
-    case 'gatito':
-    case 'gatita':
-      return tipo;
-    default:
-      throw new Error(`Tipo no válido: ${tipo}`);
+  const validTypes: FilterType[] = ['cachorro', 'hembra', 'macho', 'gatito', 'gatita'];
+
+  const sanitizedTipo = tipo.trim().toLowerCase() as FilterType; // Normaliza y fuerza el tipo
+
+  if (!validTypes.includes(sanitizedTipo)) {
+    console.warn(`Tipo no válido encontrado: "${tipo}". Se asignará 'cachorro' por defecto.`);
+    return 'cachorro'; // Valor por defecto si el tipo no es válido
   }
+
+  return sanitizedTipo;
 };
 
+
+
+
 // Convertir la propiedad 'imagenes' en un array si está separada por comas
-const convertImagesToArray = (imagenes: string | string[]): string[] => {
+const convertImagesToArray = (imagenes: string | string[] | undefined): string[] => {
+  if (!imagenes) return []; // Si está vacío o undefined, retorna un array vacío
+
   if (typeof imagenes === 'string') {
-    return imagenes.split(',').map(img => img.trim()); // Dividimos por comas y eliminamos espacios en blanco
+    return imagenes.split(',').map(img => img.trim());
   }
-  return imagenes; // Si ya es un array, lo devolvemos tal cual
+
+  return imagenes;
 };
