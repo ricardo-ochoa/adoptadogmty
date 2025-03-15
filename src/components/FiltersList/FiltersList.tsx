@@ -19,11 +19,11 @@ const FiltersList: React.FC<FiltersListProps> = ({ dogProfiles }) => {
     const [selectedFilter, setSelectedFilter] = useState<FilterType>('cachorro');
 
     // Filtros para dividir a las mascotas
-    const cachorros = dogProfiles.filter((dog: Dog) => dog.tipo === "cachorro");
-    const hembras = dogProfiles.filter((dog: Dog) => dog.tipo === "hembra");
-    const machos = dogProfiles.filter((dog: Dog) => dog.tipo === "macho");
-    const gatitos = dogProfiles.filter((dog: Dog) => dog.tipo === "gatito");
-    const gatitas = dogProfiles.filter((dog: Dog) => dog.tipo === "gatita");
+    const cachorros = dogProfiles.filter((dog: Dog) => dog?.tipo === "cachorro");
+    const hembras = dogProfiles.filter((dog: Dog) => dog?.tipo === "hembra");
+    const machos = dogProfiles.filter((dog: Dog) => dog?.tipo === "macho");
+    const gatitos = dogProfiles.filter((dog: Dog) => dog?.tipo === "gatito");
+    const gatitas = dogProfiles.filter((dog: Dog) => dog?.tipo === "gatita");
 
     return (
         <div className="p-1">
