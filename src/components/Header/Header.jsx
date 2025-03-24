@@ -45,7 +45,7 @@ export default function Component() {
             <ul className="flex space-x-4">
               <li>
                 <Link href="/adopciones" className="text-black hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
-                    Perrito y gatitos
+                    Perritos y gatitos
                 </Link>
               </li>
               <li>
@@ -99,7 +99,7 @@ export default function Component() {
               className="block px-3 py-2 rounded-md text-base font-medium text-black hover:bg-teal-100 transition duration-300 ease-in-out"
               onClick={closeMenu}
             >
-              Perrito y gatitos
+              Perritos y gatitos
             </Link>
             <Link
               href="/requisitos"
