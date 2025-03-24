@@ -25,6 +25,15 @@
   align-items: center;
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+  color: #38C8CF!important; /* Tu color personalizado (este es violeta) */
+}
+
+.swiper-pagination-bullet-active {
+  background:  #38C8CF!important;
+}
+
 .jss1,
 .jss9,
 .jss17,

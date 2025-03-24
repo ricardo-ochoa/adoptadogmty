@@ -8,6 +8,13 @@ import Link from 'next/link';
 import { Caveat } from "next/font/google";
 import "lightgallery.js/dist/css/lightgallery.css";
 import { fetchGalleryImages } from "@/data/homeGalleryData";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+
+
 
 // Importar la fuente
 const justAnotherHand = Caveat({
@@ -53,10 +60,56 @@ export default function Home() {
     loadImages();
   }, []);
 
+  const images = [
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792273/adoptadog/sliders/1_gtnj2n.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/2_aygxzb.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/3_vq0jot.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/4_q0haun.jpg" },
+  ];
+  const imagesMobile = [
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792972/adoptadog/sliders/1-mobile_yrpsrl.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792972/adoptadog/sliders/2-mobile_f9udf9.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792973/adoptadog/sliders/3-MOBILE_h5jyx1.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792973/adoptadog/sliders/4-mobil_srb3yl.jpg" },
+  ];
+
+  const selectedImages = isClient && isMobile ? imagesMobile : images;
+
   return (
     <>
+    <div className="slide-container" style={{ marginBottom: "2rem" }}>
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={20}
+        slidesPerView={isMobile ? 1 : 1}
+        navigation
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 5000 }}
+        loop={true}
+        style={{ padding: "20px" }}
+      >
+        {selectedImages.map((image, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={image.url}
+              alt={`slide-${index}`}
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "12px",
+                objectFit: "cover",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                marginBottom: "30px",
+              }}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+
       <section className="homeContainer">
-        <div className={`${isMobile ? "my-12" : "my-20"}`}>
+      
+        <div className={`${isMobile ? "my-0" : "my-0"}`}>
           <h1 className={`${justAnotherHand.className} title`}>
             Somos <span className="highlight">AdoptADog</span>
           </h1>
