@@ -62,15 +62,16 @@ export default function Home() {
 
   const images = [
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/banner2_soztni.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/banner1_ufl3dt.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792273/adoptadog/sliders/1_gtnj2n.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1748911630/adoptadog/sliders/banners_adoptadog_iggrjx.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1748911630/adoptadog/sliders/banners_adoptadog_perrito_cuep7b.jpg" },
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/2_aygxzb.jpg" },
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/4_q0haun.jpg" },
   ];
+
   const imagesMobile = [
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/chamobile_n3jvlg.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/mobile2_tuvqcd.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792972/adoptadog/sliders/1-mobile_yrpsrl.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1748911630/adoptadog/sliders/mobile2_tuvqcd_tiblui.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1748911630/adoptadog/sliders/mobile_c7lzmd.jpg" },
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792972/adoptadog/sliders/2-mobile_f9udf9.jpg" },
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792973/adoptadog/sliders/4-mobil_srb3yl.jpg" },
   ];
