@@ -128,8 +128,8 @@ const Links = () => {
                                         encuesta de adopción.
                                     </a>
                                 </span>,
-                                "Enviar fotos del espacio donde estaría el perrito.",
-                                "Cuota de $900 MXN o su equivalente en donativos en especie por PERRITO 🐶.",
+                                "Enviar fotos del espacio donde estaría el perrito / gatito.",
+                                "Cuota de $900 MXN adultos / $1,000 MXN cachorros o su equivalente en donativos en especie por PERRITO / GATITO 🐶😺.",
                             ].map((requirement, index) => (
                                 <li key={index} className="flex items-start">
                                     <CheckmarkIcon className="h-6 w-6 text-blue-600 mr-2 flex-shrink-0 mt-1" />
