@@ -62,7 +62,7 @@ const Links = () => {
             text: "Donaciones con Paypal"
         },
         {
-            href: "https://api.whatsapp.com/send?phone=5218116028654&text=Hola%2C%20quiero%20hacer%20una%20donaci%C3%B3n%20en%20especie%20para%20AdoptAdog%2C%20%C2%BFD%C3%B3nde%20los%20puedo%20ver%3F",
+            href: "https://api.whatsapp.com/send?phone=5218117711668&text=Hola%2C%20quiero%20hacer%20una%20donaci%C3%B3n%20en%20especie%20para%20AdoptAdog%2C%20%C2%BFD%C3%B3nde%20los%20puedo%20ver%3F",
             imageSrc: "/links/especie.webp",
             altText: "Donaciones en especie",
             text: "Donaciones en especie"
