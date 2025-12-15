@@ -1,29 +1,36 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function calcularEdad(fechaNacimiento: string) {
-  // Convertir fecha de formato DD/MM/YYYY a YYYY-MM-DD
-  const [dia, mes, año] = fechaNacimiento.split("/");
-  const fechaNac = new Date(`${año}-${mes}-${dia}`);
-  const fechaActual = new Date();
-  
-  let años = fechaActual.getFullYear() - fechaNac.getFullYear();
-  let meses = fechaActual.getMonth() - fechaNac.getMonth();
-  
-  // Ajuste si el mes de nacimiento es mayor al mes actual en el mismo año
+  if (!fechaNacimiento || typeof fechaNacimiento !== "string") return "";
+
+  const parts = fechaNacimiento.split(/[\/\-]/);
+  if (parts.length !== 3) return "";
+
+  const dia = Number(parts[0]);
+  const mes = Number(parts[1]);
+  const anio = Number(parts[2]);
+
+  const fechaNac = new Date(anio, mes - 1, dia);
+  if (Number.isNaN(fechaNac.getTime())) return "";
+
+  const hoy = new Date();
+
+  let anios = hoy.getFullYear() - fechaNac.getFullYear();
+  let meses = hoy.getMonth() - fechaNac.getMonth();
+
+  if (hoy.getDate() < fechaNac.getDate()) meses -= 1;
+
   if (meses < 0) {
-      años--;
-      meses += 12;
+    anios -= 1;
+    meses += 12;
   }
-  
-  // Formateo de la salida
-  if (años > 0) {
-      return años === 1 ? "1 año" : `${años} años`;
-  } else {
-      return meses === 1 ? "1 mes" : `${meses} meses`;
-  }
+
+  if (anios > 0) return anios === 1 ? "1 año" : `${anios} años`;
+  if (meses <= 0) return "0 meses";
+  return meses === 1 ? "1 mes" : `${meses} meses`;
 }

@@ -1,46 +1,48 @@
-'use client'
-import React, { useState } from 'react';
-import Filters from './Filters';
-import { DogList } from './DogList';
-import { Dog, FilterType } from '../../lib/types';
-import { Caveat } from "next/font/google";
+"use client";
+import React, { useEffect, useMemo, useState } from "react";
+import Filters from "./Filters";
+import { DogList } from "./DogList";
+import { useAdoptionCategories } from "@/hooks/useAdoptionCategories";
 
-// Importar la fuente
-const justAnotherHand = Caveat({
-    weight: '400',
-    subsets: ['latin'],
-});
-
-interface FiltersListProps {
-    dogProfiles: Dog[]; // Aquí defines que se espera un array de objetos Dog
-}
-
-const FiltersList: React.FC<FiltersListProps> = ({ dogProfiles }) => {
-    const [selectedFilter, setSelectedFilter] = useState<FilterType>('cachorro');
-
-    // Filtros para dividir a las mascotas
-    const cachorros = dogProfiles.filter((dog: Dog) => dog?.tipo === "cachorro");
-    const hembras = dogProfiles.filter((dog: Dog) => dog?.tipo === "hembra");
-    const machos = dogProfiles.filter((dog: Dog) => dog?.tipo === "macho");
-    const gatitos = dogProfiles.filter((dog: Dog) => dog?.tipo === "gatito");
-    const gatitas = dogProfiles.filter((dog: Dog) => dog?.tipo === "gatita");
-
-    return (
-        <div className="p-1">
-            <h1 className={`${justAnotherHand.className} text-3xl md:text-6xl font-bold text-center mb-4`}>
-                Lomitos y gatitos <span className="text-teal-500">disponibles</span>
-            </h1>
-            {/* Filtros */}
-            <Filters selectedFilter={selectedFilter} setFilter={setSelectedFilter} />
-
-            {/* Listado de mascotas filtradas */}
-            {selectedFilter === "cachorro" && <DogList dogs={cachorros} title="Cachorros" />}
-            {selectedFilter === "hembra" && <DogList dogs={hembras} title="Hembras" />}
-            {selectedFilter === "macho" && <DogList dogs={machos} title="Machos" />}
-            {selectedFilter === "gatito" && <DogList dogs={gatitos} title="Gatitos" />}
-            {selectedFilter === "gatita" && <DogList dogs={gatitas} title="Gatitas" />}
-        </div>
-    );
+const SLUG_TO_TIPO = {
+  cachorros: "cachorro",
+  hembras: "hembra",
+  machos: "macho",
+  gatos: "gatito",
+  gatas: "gatita",
 };
 
-export default FiltersList;
+export default function FiltersList({ dogProfiles = [] }) {
+  const { categories, loading } = useAdoptionCategories({ sort: ["id:asc"] });
+
+  const [selectedFilter, setSelectedFilter] = useState("cachorro");
+
+  console.log("dogProfiles:", dogProfiles);
+
+  // si quieres que el default sea la primera categoría de Strapi:
+  useEffect(() => {
+    if (!categories?.length) return;
+    const firstTipo = SLUG_TO_TIPO[categories[0].slug];
+    if (firstTipo) setSelectedFilter(firstTipo);
+  }, [categories]);
+
+  const filteredDogs = useMemo(() => {
+    return dogProfiles.filter((dog) => dog?.tipo === selectedFilter);
+  }, [dogProfiles, selectedFilter]);
+
+  return (
+    <div className="p-1">
+      <Filters
+        categories={categories}
+        selectedFilter={selectedFilter}
+        setFilter={setSelectedFilter}
+      />
+
+      {loading ? (
+        <p>Cargando...</p>
+      ) : (
+        <DogList dogs={filteredDogs} title="Resultados" />
+      )}
+    </div>
+  );
+}

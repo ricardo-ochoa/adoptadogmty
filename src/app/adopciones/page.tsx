@@ -4,6 +4,7 @@ import FiltersList from '@/components/FiltersList/FiltersList';
 
 const List = async () => {
     const dogProfiles = await fetchDogProfiles();
+    console.log("Fetched dogProfiles in page.tsx:", dogProfiles);
 
     return <FiltersList dogProfiles={dogProfiles} />;
 };

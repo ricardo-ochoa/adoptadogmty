@@ -1,63 +1,110 @@
-import Papa from 'papaparse';
-import { Dog, FilterType } from '../lib/types'; // Importa tus tipos
+const VALID_TYPES = ["cachorro", "hembra", "macho", "gatito", "gatita"];
 
-interface DogProfile {
-  id: string;
-  tipo: string; // Este sigue siendo string aquí
-  nombre: string;
-  edad: string;
-  talla: string;
-  historia: string;
-  caracter: string;
-  texto_especial?: string;
-  imagenes: string | string[];
+const SLUG_TO_TIPO: Record<string, string> = {
+  cachorros: "cachorro",
+  hembras: "hembra",
+  machos: "macho",
+  gatos: "gatito",
+  gatas: "gatita",
+};
+
+const STRAPI_URL = process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
+
+export async function fetchDogProfiles() {
+  if (!STRAPI_URL) throw new Error("Falta STRAPI_URL en .env.local");
+
+  // 👇 QUITA populate=* (tu Strapi ya te regresa photos y category)
+  const url = `${STRAPI_URL}/api/animals?populate=*&pagination[page]=1&pagination[pageSize]=1000`;
+
+  const res = await fetch(url, { next: { revalidate: 60 } });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Error GET ${url}: ${res.status}\n${body}`);
+  }
+
+  const json = await res.json();
+  return (json?.data ?? []).map(mapStrapiAnimalToDog);
 }
 
-export const fetchDogProfiles = async (): Promise<Dog[]> => {
-  const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS8DHojRvP7AlPtiKv5xK_8T0fmfb2PM-YqRseoQW1cEq7Z7GCkoOXJzbJlQ5cIZUeKpLzkxpFkAVFg/pub?output=csv');
-  const csvData = await response.text();
+function mapStrapiAnimalToDog(row: any) {
+  const a = row?.attributes ? row.attributes : row;
 
-  return new Promise((resolve, reject) => {
-    Papa.parse<DogProfile>(csvData, {
-      header: true,
-      complete: (results) => {
-        const dogProfiles: Dog[] = results.data.map((profile) => ({
-          ...profile,
-          tipo: convertToFilterType(profile.tipo), // Conversión segura a FilterType
-          imagenes: convertImagesToArray(profile.imagenes), // Convierte imágenes a array
-        }));
+  const categorySlug = a?.category?.slug || a?.categorySlug;
+  const tipo = normalizeTipo(categorySlug || a?.tipo);
 
-        resolve(dogProfiles);
-      },
-      error: (error: { message: any }) => reject(error.message),
-    });
-  });
-};
+  const imagenes = normalizeImages(a?.photos, STRAPI_URL);
 
-// Convertir 'tipo' en 'FilterType'
-const convertToFilterType = (tipo: string): FilterType => {
-  const validTypes: FilterType[] = ['cachorro', 'hembra', 'macho', 'gatito', 'gatita'];
+  return {
+    id: String(a?.id ?? row?.id ?? ""),
+    documentId: a?.documentId ?? "",
 
-  const sanitizedTipo = tipo.trim().toLowerCase() as FilterType; // Normaliza y fuerza el tipo
+    // 👇 IMPORTANTE: agrega tipo para tus filtros UI
+    tipo,
 
-  if (!validTypes.includes(sanitizedTipo)) {
-    console.warn(`Tipo no válido encontrado: "${tipo}". Se asignará 'cachorro' por defecto.`);
-    return 'cachorro'; // Valor por defecto si el tipo no es válido
+    nombre: a?.name ?? "",
+    location: a?.location ?? "",
+    likes: a?.likes ?? 0,
+
+    // tu UI usa calcularEdad(dog.birthdate) (o dog.edad)
+    edad: a?.birthdate ?? "",
+    birthdate: a?.birthdate ?? "",
+
+    caracter: richTextToPlain(a?.caracter),
+    historia: richTextToPlain(a?.mi_historia),
+
+    imagenes,
+
+    category: a?.category
+      ? { id: a.category.id, name: a.category.name, slug: a.category.slug }
+      : null,
+  };
+}
+
+function normalizeTipo(value: any) {
+  if (!value) return "cachorro";
+  const v = String(value).trim().toLowerCase();
+  const maybe = SLUG_TO_TIPO[v] || v;
+
+  if (!VALID_TYPES.includes(maybe)) return "cachorro";
+  return maybe;
+}
+
+function normalizeImages(photos: any, baseUrl: string | undefined) {
+  if (!photos) return [];
+  const base = (baseUrl || "").replace(/\/+$/, "");
+
+  if (Array.isArray(photos)) {
+    return photos
+      .map((p) => p?.url || p?.formats?.thumbnail?.url)
+      .filter(Boolean)
+      .map((u) => (u.startsWith("http") ? u : `${base}${u.startsWith("/") ? u : `/${u}`}`));
   }
 
-  return sanitizedTipo;
-};
-
-
-
-
-// Convertir la propiedad 'imagenes' en un array si está separada por comas
-const convertImagesToArray = (imagenes: string | string[] | undefined): string[] => {
-  if (!imagenes) return []; // Si está vacío o undefined, retorna un array vacío
-
-  if (typeof imagenes === 'string') {
-    return imagenes.split(',').map(img => img.trim());
+  if (Array.isArray(photos?.data)) {
+    return photos.data
+      .map((p: any) => p?.attributes?.url || p?.url)
+      .filter(Boolean)
+      .map((u: string) => (u.startsWith("http") ? u : `${base}${u.startsWith("/") ? u : `/${u}`}`));
   }
 
-  return imagenes;
-};
+  return [];
+}
+
+function richTextToPlain(value: any) {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+
+  if (Array.isArray(value)) {
+    return value
+      .map((block) =>
+        Array.isArray(block?.children)
+          ? block.children.map((ch: any) => ch?.text || "").join("")
+          : ""
+      )
+      .join("\n")
+      .trim();
+  }
+
+  return "";
+}

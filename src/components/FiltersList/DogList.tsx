@@ -40,6 +40,8 @@ const data = [
 export const DogList: React.FC<DogListProps> = ({ dogs, title }) => {
     const [selectedDog, setSelectedDog] = useState<Dog | null>(null);
 
+    console.log("Dogs in DogList:", dogs);
+
     return (
         <div className="mb-8 px-3 max-w-[1200px] mx-auto">
             <h2 className="text-2xl font-bold mb-4">{title}</h2>
@@ -58,7 +60,7 @@ export const DogList: React.FC<DogListProps> = ({ dogs, title }) => {
                                 )}
                                 <div className="flex justify-center items-center">
                                     <p className={`text-2xl md:text-3xl text-black ${justAnotherHand.className}`}>{dog.nombre}</p>
-                                    <p className="text-sm text-gray-600 ml-2 mt-1">· {calcularEdad(dog.edad)}</p>
+                                    <p className="text-sm text-gray-600 ml-2 mt-1">· {calcularEdad(dog.birthdate)}</p>
                                 </div>
                             </CardContent>
                         </Card>
