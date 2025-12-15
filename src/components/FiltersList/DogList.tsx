@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/Card/Card";
 import { ImageCarousel } from "../ui/CarouselComponent";
 import { Dog } from "@/lib/types";
-import { X } from 'lucide-react';
 import { Caveat } from "next/font/google";
 import ModalPets from './ModalPets';
 import { calcularEdad } from '@/lib/utils';

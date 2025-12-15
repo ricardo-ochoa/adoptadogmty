@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Filters from "./Filters";
-import { DogList, type Dog } from "./DogList"; // 👈 importa el tipo Dog desde DogList
+import { DogList } from "./DogList";
 import { useAdoptionCategories } from "@/hooks/useAdoptionCategories";
+import { Dog } from "@/lib/types";
 
 const SLUG_TO_TIPO = {
   cachorros: "cachorro",
@@ -30,6 +31,7 @@ type DogProfileInput = {
   imagenes?: string[];
 };
 
+
 export default function FiltersList({ dogProfiles = [] }: { dogProfiles: DogProfileInput[] }) {
   const { categories, loading }: { categories: { slug: keyof typeof SLUG_TO_TIPO }[]; loading: boolean } =
     useAdoptionCategories({ sort: ["id:asc"] });
@@ -50,7 +52,7 @@ export default function FiltersList({ dogProfiles = [] }: { dogProfiles: DogProf
         nombre: dog.nombre ?? "",
         edad: dog.edad ?? 0,
         birthdate: dog.birthdate ?? "",
-        tipo: dog.tipo, // 👈 ya es Tipo por el type-guard
+        tipo: dog.tipo as Tipo, // 👈 ya es Tipo por el type-guard
         talla: dog.talla ?? "",
         historia: dog.historia ?? "",
         caracter: dog.caracter ?? "",
