@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // slug (Strapi) -> tipo (tu Dog.tipo)
-const SLUG_TO_TIPO = {
+const SLUG_TO_TIPO: Record<string, string> = {
   cachorros: "cachorro",
   hembras: "hembra",
   machos: "macho",
@@ -20,18 +20,22 @@ const UI_BY_TIPO = {
 
 const DEFAULT_UI = { color: "bg-gray-100", ring: "ring-gray-300", icon: "/cachorros.svg" };
 
-export default function Filters({ categories = [], selectedFilter, setFilter }) {
-  // Si ya llegaron categorías de Strapi, usamos esas.
-  // Si no, puedes seguir mostrando los 5 defaults (opcional).
+interface FiltersProps {
+  categories: { id: string; name: string; slug: string }[];
+  selectedFilter: string;
+  setFilter: (filter: string) => void;
+}
+
+export default function Filters({ categories = [], selectedFilter, setFilter }: FiltersProps) {
   const filters = categories.length
     ? categories.map((c) => {
         const tipo = SLUG_TO_TIPO[c.slug] || c.slug; // fallback
-        const ui = UI_BY_TIPO[tipo] || DEFAULT_UI;
+        const ui = UI_BY_TIPO[tipo as keyof typeof UI_BY_TIPO] || DEFAULT_UI;
 
         return {
           id: c.id,
-          label: c.name,   // viene de Strapi (ej. "cachorros")
-          value: tipo,     // tu tipo interno (ej. "cachorro")
+          label: c.name,
+          value: tipo,
           ...ui,
         };
       })
