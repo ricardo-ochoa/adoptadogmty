@@ -6,6 +6,7 @@ export interface Dog {
   tipo: FilterType;
   nombre: string;
   edad: string;
+  birthdate: string;
   talla: string;
   historia: string;
   caracter: string;
