@@ -8,13 +8,13 @@ const SLUG_TO_TIPO: Record<string, string> = {
   gatas: "gatita",
 };
 
-const STRAPI_URL = process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL
 
 export async function fetchDogProfiles() {
   if (!STRAPI_URL) throw new Error("Falta STRAPI_URL en .env.local");
 
   // 👇 QUITA populate=* (tu Strapi ya te regresa photos y category)
-  const url = `${STRAPI_URL}/api/animals?populate=*&pagination[page]=1&pagination[pageSize]=1000`;
+  const url = `${STRAPI_URL}/api/animals?populate=*&pagination[page]=0&pagination[pageSize]=1000`;
 
   const res = await fetch(url, { next: { revalidate: 60 } });
 

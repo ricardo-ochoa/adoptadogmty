@@ -1,64 +1,76 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-// import PetFace from "@/components/PetFace/PetFace";
-import Link from 'next/link';
+import Link from "next/link";
 import { Caveat } from "next/font/google";
 import "lightgallery.js/dist/css/lightgallery.css";
-import { fetchGalleryImages } from "@/data/homeGalleryData";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { fetchHomeGallery } from "@/data/homeGalleryData";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
-
-// Importar la fuente
-const justAnotherHand = Caveat({
-  weight: '400',
-  subsets: ['latin'],
-});
-
+const justAnotherHand = Caveat({ weight: "400", subsets: ["latin"] });
 
 export default function Home() {
   const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [homeGalleryTitle, setHomeGalleryTitle] = useState<string>("");
+  const [homeGallerySubtitle, setHomeGallerySubtitle] = useState<string>("");
   const [isClient, setIsClient] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const galleryTitle =
+    homeGalleryTitle?.trim() || "Descubre nuestras historias y atrévete a adoptar";
+
+  const { mainText, highlightText } = useMemo(() => {
+    const text = galleryTitle.replace(/\s+/g, " ");
+    const idx = text.lastIndexOf(" ");
+    if (idx === -1) return { mainText: text, highlightText: "" };
+    return { mainText: text.slice(0, idx), highlightText: text.slice(idx + 1) };
+  }, [galleryTitle]);
+
   const PhotoItem = ({ image, group }: { image: string; group: string }) => (
-    <div style={{
-      maxWidth: isMobile ? "150px" : "200px",
-      width: isMobile ? "150px" : "200px",
-      padding: "5px",
-    }}>
+    <div
+      style={{
+        maxWidth: isMobile ? "150px" : "200px",
+        width: isMobile ? "150px" : "200px",
+        padding: "5px",
+      }}
+    >
       <LightgalleryItem group={group} src={image}>
-        <img src={image} alt="Gallery Item" style={{ width: "100%" }} className="animate__animated animate__backInUp" />
+        <img
+          src={image}
+          alt="Gallery Item"
+          style={{ width: "100%" }}
+          className="animate__animated animate__backInUp"
+        />
       </LightgalleryItem>
     </div>
   );
 
-
   useEffect(() => {
     setIsClient(true);
 
-    const loadImages = async () => {
+    const loadHomeGallery = async () => {
       try {
-        const images = await fetchGalleryImages();
-        // Extrae las URLs de las imágenes
-        const imageUrls = images.flatMap(img => Array.isArray(img.url) ? img.url : [img.url]);
-        setGalleryImages(imageUrls);
+        const data = await fetchHomeGallery();
+        setHomeGalleryTitle(data.title);
+        setHomeGallerySubtitle(data.subtitle);
+        setGalleryImages(data.images);
+        console.log("Home Gallery:", data);
       } catch (error) {
-        console.error("Error loading gallery images:", error);
+        console.error("Error loading home gallery:", error);
       }
     };
 
-    loadImages();
+    loadHomeGallery();
   }, []);
+
 
   const images = [
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/banner2_soztni.jpg" },
@@ -164,10 +176,20 @@ export default function Home() {
 
         <div>
           <h2 className={`${justAnotherHand.className} title mt-40`}>
-            Descubre nuestras historias y atrévete a <span className="highlight">adoptar</span>
+            {mainText}{" "}
+            {highlightText ? (
+              <span className="highlight">{highlightText}</span>
+            ) : null}
           </h2>
+          {homeGallerySubtitle ? (
+            <p
+              className={`${isMobile ? "text-md" : "text-lg"} mb-10 text-center`}
+            >
+              {homeGallerySubtitle}
+            </p>
+          ) : null}
 
-          {/* Solo renderizar la galería en el cliente */}
+
           {isClient && (
             <LightgalleryProvider>
               <div
@@ -189,7 +211,6 @@ export default function Home() {
           )}
         </div>
 
-        {/* <PetFace /> */}
       </section >
     </>
   );

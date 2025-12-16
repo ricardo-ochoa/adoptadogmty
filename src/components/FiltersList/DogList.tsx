@@ -39,8 +39,6 @@ const data = [
 export const DogList: React.FC<DogListProps> = ({ dogs, title }) => {
     const [selectedDog, setSelectedDog] = useState<Dog | null>(null);
 
-    console.log("Dogs in DogList:", dogs);
-
     return (
         <div className="mb-8 px-3 max-w-[1200px] mx-auto">
             <h2 className="text-2xl font-bold mb-4">{title}</h2>
