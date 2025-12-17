@@ -12,6 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { fetchHeaderSlider } from "@/data/headerSliderData";
 
 const justAnotherHand = Caveat({ weight: "400", subsets: ["latin"] });
 
@@ -20,6 +21,8 @@ export default function Home() {
   const [homeGalleryTitle, setHomeGalleryTitle] = useState<string>("");
   const [homeGallerySubtitle, setHomeGallerySubtitle] = useState<string>("");
   const [isClient, setIsClient] = useState(false);
+  const [headerImages, setHeaderImages] = useState<{ url: string; alt?: string }[]>([]);
+  const [headerImagesMobile, setHeaderImagesMobile] = useState<{ url: string; alt?: string }[]>([]);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -71,24 +74,50 @@ export default function Home() {
     loadHomeGallery();
   }, []);
 
+  useEffect(() => {
+  setIsClient(true);
 
-  const images = [
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/banner2_soztni.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/banner_carrera_r9ftlk.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/perritos_ojrvbo.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/2_aygxzb.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/4_q0haun.jpg" },
-  ];
+    const loadAll = async () => {
+      try {
+        // Home gallery (tu sección de LightGallery)
+        const gallery = await fetchHomeGallery();
+        setHomeGalleryTitle(gallery.title);
+        setHomeGallerySubtitle(gallery.subtitle);
+        setGalleryImages(gallery.images);
 
-  const imagesMobile = [
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/chamobile_n3jvlg.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/banner_carrera_mobile_q4vdn3.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/perritos_mobile_pii1vk.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792972/adoptadog/sliders/2-mobile_f9udf9.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792973/adoptadog/sliders/4-mobil_srb3yl.jpg" },
-  ];
+        // Header slider (Swiper)
+        const slider = await fetchHeaderSlider();
+        setHeaderImages(slider.desktop);
+        setHeaderImagesMobile(slider.mobile);
 
-  const selectedImages = isClient && isMobile ? imagesMobile : images;
+        console.log("Header Slider:", slider);
+      } catch (error) {
+        console.error("Error loading data:", error);
+      }
+    };
+
+    loadAll();
+  }, []);
+
+
+  // const images = [
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/banner2_soztni.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/banner_carrera_r9ftlk.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/perritos_ojrvbo.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/2_aygxzb.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/4_q0haun.jpg" },
+  // ];
+
+  // const imagesMobile = [
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/chamobile_n3jvlg.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/banner_carrera_mobile_q4vdn3.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1758646347/adoptadog/sliders/perritos_mobile_pii1vk.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792972/adoptadog/sliders/2-mobile_f9udf9.jpg" },
+  //   { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792973/adoptadog/sliders/4-mobil_srb3yl.jpg" },
+  // ];
+
+  const selectedImages = isClient && isMobile ? headerImagesMobile : headerImages;
+
 
   return (
     <>
@@ -96,7 +125,7 @@ export default function Home() {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
-        slidesPerView={isMobile ? 1 : 1}
+        slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
@@ -107,7 +136,7 @@ export default function Home() {
           <SwiperSlide key={index}>
             <img
               src={image.url}
-              alt={`slide-${index}`}
+              alt={image.alt ?? `slide-${index}`}
               style={{
                 width: "100%",
                 height: "auto",
