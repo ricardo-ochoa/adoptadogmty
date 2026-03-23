@@ -60,7 +60,12 @@ const ModalPets: React.FC<ModalProps> = ({ dog, onClose }) => {
                 </button>
                 {/* Contenedor con scroll si es necesario */}
                 <div className="overflow-y-auto max-h-[500px] md:max-h-[650px]">
-                    <h2 className="text-2xl font-bold mb-4">{dog.nombre} · {calcularEdad(dog.edad)}</h2>
+                    <h2 className="text-2xl font-bold">{dog.nombre} · {calcularEdad(dog.edad)}</h2>
+                    {
+                                    dog.talla && (
+                                        <p className="text-sm text-black ml-2 mt-1 w-full text-left mb-1">Talla {dog.talla}</p>
+                                    )
+                                }
                     <ImageCarousel
                         images={Array.isArray(dog.imagenes) ? dog.imagenes : [dog.imagenes]}
                     />

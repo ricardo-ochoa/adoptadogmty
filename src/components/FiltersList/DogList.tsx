@@ -60,6 +60,11 @@ export const DogList: React.FC<DogListProps> = ({ dogs, title }) => {
                                     <p className={`text-2xl md:text-3xl text-black ${justAnotherHand.className}`}>{dog.nombre}</p>
                                     <p className="text-sm text-gray-600 ml-2 mt-1">· {calcularEdad(dog.edad)}</p>
                                 </div>
+                                {
+                                    dog.talla && (
+                                        <p className="text-sm text-black ml-2 mt-1 w-full text-center">Talla {dog.talla}</p>
+                                    )
+                                }
                             </CardContent>
                         </Card>
                     );
