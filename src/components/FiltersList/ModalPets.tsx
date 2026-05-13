@@ -63,7 +63,7 @@ const ModalPets: React.FC<ModalProps> = ({ dog, onClose }) => {
                     <h2 className="text-2xl font-bold">{dog.nombre} · {calcularEdad(dog.edad)}</h2>
                     {
                                     dog.talla && (
-                                        <p className="text-sm text-black ml-2 mt-1 w-full text-left mb-1">Talla {dog.talla}</p>
+                                        <p className="text-sm text-black ml-2 mt-1 w-full text-left mb-1rpe">Talla {dog.talla}</p>
                                     )
                                 }
                     <ImageCarousel
