@@ -61,18 +61,18 @@ export default function Home() {
   }, []);
 
   const images = [
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/banner2_soztni.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1769484898/adoptadog/sliders/rifa_desk_yzhbli.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1769484006/adoptadog/sliders/banners_adoptadog_ep5ah1.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/2_aygxzb.jpg" },
+    // { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/banner2_soztni.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1795196797/adoptadog/sliders/rifa_desk_yzhbli_w1nzeb.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1795196794/adoptadog/sliders/3k_adopt_desk_meoods.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1795196794/adoptadog/sliders/dona_desk_rgttee.jpg" },
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792134/adoptadog/sliders/4_q0haun.jpg" },
   ];
 
   const imagesMobile = [
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/chamobile_n3jvlg.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1769484897/adoptadog/sliders/rida_mobile_yhj9gb.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1769484006/adoptadog/sliders/mobile2_qjtwll.jpg" },
-    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792972/adoptadog/sliders/2-mobile_f9udf9.jpg" },
+    // { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1745638046/adoptadog/sliders/chamobile_n3jvlg.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1795196796/adoptadog/sliders/rida_mobile_yhj9gb_m7jbdl.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1795196794/adoptadog/sliders/3k_adopt_r7szdc.jpg" },
+    { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1795196795/adoptadog/sliders/dona_tcczmo.jpg" },
     { url: "https://res.cloudinary.com/dnxxkvpiz/image/upload/v1742792973/adoptadog/sliders/4-mobil_srb3yl.jpg" },
   ];
 
